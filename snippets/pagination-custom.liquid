@@ -1,0 +1,10 @@
+					<div class="full left viewmore">
+						<div class="col-md-16 col-md-offset-16">
+                          {% if paginate.previous %}
+							<a class="button" href="{{ paginate.previous.url }}">Previous</a>
+                          {% endif %}
+                          {% if paginate.next %}
+							<a class="button" href="{{ paginate.next.url }}">View More</a>
+                          {% endif %}
+						</div>
+					</div>

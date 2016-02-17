@@ -1,0 +1,28 @@
+{% assign page = pages.frontpage %}
+	<section id="about-section" class="full left rel">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-48 col-md-offset-0 col-sm-44 col-sm-offset-2">
+                  <div class="starter">
+                      <p class="z-1">{{ page.title }}</p>
+                      <div class="abs starter-arrow"><span class="glyphicon glyphicon-menu-up"></span></div>
+                  </div>
+					<div id="toggle">
+						<aside class="col-sm-16">
+                          {% if page.content contains "<img" %}
+                            {% assign content-src = page.content | split: 'src="' %}
+                            {% assign content-size = content-src.size | minus:1 %}
+                              {% for i in (1..content-size) %}
+                                {% assign src = content-src[i] | split: '"' | first %}
+                                <img src="{{src}}" />
+                              {% endfor %}
+                          {% endif %}
+						</aside>
+						<article class="col-sm-30 col-sm-offset-2">
+                          {{ page.content | split: '<img src="//cdn.shopify.com/s/files/1/0841/3315/files/sample-person_large.jpg" style="float: right;">' | last  }}
+						</article>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>

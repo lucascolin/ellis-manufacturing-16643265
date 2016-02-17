@@ -1,0 +1,146 @@
+						  <div class="full left" id="FilterBy">
+							<h5 class="mt">{{ 'collections.filtering.title' | t }}</h5>
+                              {% assign tags = settings.industry_filter_tags  | replace: ' ,', ',' | replace: ', ', ',' | split: ',' %}    
+                              {% for tag in tags %}
+                                {% if current_tags contains tag %}
+                                <div class="left custom-checkbox Product">
+                                  <input id="check_{{ forloop.index }}" type="checkbox" name="check{{ forloop.index }}" value="/{{ tag | handle }}" {% if current_tags contains tag %}checked="checked"{% endif %} class="coll-filter {{ tag | downcase }}"  />
+                                  <label for="check_{{ forloop.index }}"> {{ tag }}</label>
+                                </div>
+                                {% elsif collection.all_tags contains tag %}
+                                <div class="left custom-checkbox Product">
+                                  <input id="check_{{ forloop.index }}" type="checkbox" name="check{{ forloop.index }}" value="/{{ tag | handle }}"  {% if current_tags contains tag %}checked="checked"{% endif %} class="coll-filter {{ tag | downcase }}" />
+                                  <label for="check_{{ forloop.index }}">  {{ tag }}</label>
+                                </div>
+                                {% endif %}
+                              {% endfor %}
+                            {% comment %}
+                              {% assign tags = settings.product_filter_tags  | replace: ' ,', ',' | replace: ', ', ',' | split: ',' %}    
+                              {% for tag in tags %}
+                                {% if current_tags contains tag %}
+                                <div class="left custom-checkbox Industry">
+                                  <input id="check_{{ forloop.index }}" type="checkbox" name="check1" value="/{{ tag | handle }}" {% if current_tags contains tag %}checked="checked"{% endif %} class="coll-filter {{ tag | downcase }}"  />
+                                  <label for="check_{{ forloop.index }}"> {{ tag }}</label>
+                                </div>
+                                {% elsif collection.all_tags contains tag %}
+                                <div class="left custom-checkbox Industry">
+                                  <input id="check_{{ forloop.index }}" type="checkbox" name="check1" value="/{{ tag | handle }}"  {% if current_tags contains tag %}checked="checked"{% endif %} class="coll-filter {{ tag | downcase }}" />
+                                  <label for="check_{{ forloop.index }}">  {{ tag }}</label>
+                                </div>
+                                {% endif %}
+                              {% endfor %}
+                            {% endcomment %}
+                          </div>
+						  <div class="full left" id="SortBy">
+							<h5 class="mt">{{ 'collections.sorting.title' | t }}</h5>
+							<div class="full left custom-checkbox">
+								<input id="price-ascending" type="checkbox" name="price-ascending" value="price-ascending" class="coll-filter">
+								<label for="price-ascending">Low to High</label>
+							</div>
+							<div class="full left custom-checkbox">
+								<input id="price-descending" type="checkbox" name="price-descending" value="price-descending" class="coll-filter">
+								<label for="price-descending">High to Low</label>
+							</div>
+							<hr />
+							<div class="full left custom-checkbox">
+								<input id="title-ascending" type="checkbox" name="title-ascending" value="title-ascending" class="coll-filter">
+								<label for="title-ascending">{{ 'collections.sorting.az' | t }}</label>
+							</div>
+							<div class="full left custom-checkbox">
+								<input id="title-descending" type="checkbox" name="title-descending" value="title-descending" class="coll-filter">
+								<label for="title-descending">{{ 'collections.sorting.za' | t }}</label>
+							</div>
+							<hr />
+							<div class="full left custom-checkbox">
+								<input id="best-selling" type="checkbox" name="best-selling" value="best-selling" class="coll-filter">
+								<label for="best-selling">{{ 'collections.sorting.best_selling' | t }}</label>
+							</div>
+                          </div>
+
+
+<script>
+  /*============================================================================
+    Inline JS because collection liquid object is only available
+    on collection pages, and not external JS files
+  ==============================================================================*/
+  
+  function getUrlParameter(sParam)
+  {
+      var sPageURL = window.location.search.substring(1);
+      var sURLVariables = sPageURL.split('&');
+      for (var i = 0; i < sURLVariables.length; i++) 
+      {
+          var sParameterName = sURLVariables[i].split('=');
+          if (sParameterName[0] == sParam) 
+          {
+              return sParameterName[1];
+          }
+      }
+  }
+  var sorting = getUrlParameter('sort_by');
+  
+  Shopify.queryParams = {};
+  if (location.search.length) {
+    for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
+      aKeyValue = aCouples[i].split('=');
+      if (aKeyValue.length > 1) {
+        Shopify.queryParams[decodeURIComponent(aKeyValue[0])] = decodeURIComponent(aKeyValue[1]);
+      }
+    }
+  }
+
+  $(function(){
+    
+    if (typeof sorting != 'undefined') {
+      $('input[name='+sorting+']').attr('checked', true);
+    }
+    
+    $("#SortBy input[type='checkbox']").change(function(){
+      var item=$(this);    
+      if(item.is(":checked"))
+      {    
+
+            Shopify.queryParams.sort_by = jQuery(this).val();
+            location.search = jQuery.param(Shopify.queryParams);
+
+      }    
+    });
+
+    $("#FilterBy input[type='checkbox']").change(function(){
+      var item=$(this);    
+      if(item.is(":checked"))
+      {    
+
+        var newTags = [];
+        jQuery(this).each(function() { 
+          if (jQuery(this).val()) {
+            newTags.push(jQuery(this).val());
+          }
+        });
+        if (newTags.length) {
+          var query = newTags.join('+');
+            window.location.href = jQuery('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('tag', query);
+        } 
+        else {
+            {% if collection.handle %}
+            window.location.href = window.location.href.split('?')[0]+'/collections/{{ collection.handle }}';
+            {% elsif collection.products.first.type == collection.title %}
+            window.location.href = window.location.href.split('?')[0]+'{{ collection.title | url_for_type }}';
+            {% elsif collection.products.first.vendor == collection.title %}
+            window.location.href = window.location.href.split('?')[0]+'{{ collection.title | url_for_vendor }}';
+            {% endif %}
+        }
+
+      }    
+    });
+  });
+  {% comment %}
+    $(window).load(function() {
+	  var filterShow = $(".navbar-nav > li.current > a > span").text();
+      console.log(filterShow);
+      $( '#FilterBy div:not(.'+filterShow+')' ).first().show( "fast", function showNext() {
+        $( this ).next( '#FilterBy div:not(.'+filterShow+')' ).show( "fast", showNext );
+      });
+    });
+  {% endcomment %}
+</script>

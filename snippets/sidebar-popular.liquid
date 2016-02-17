@@ -1,0 +1,13 @@
+					<div class="col-md-48 col-md-offset-0 col-sm-36 col-sm-offset-6 col-xs-48 sidebar-single">
+						<div class="full left single-headline">
+							<h4>Popular Sellers</h4>
+						</div>
+						<ul class="product-slider">
+						{% assign thirds = 'col-xs-48' %}
+                        {% for product in collections.featured.products %}
+							<li>
+                          {% include 'product-grid-item' with thirds %}
+							</li>
+                        {% endfor %}
+                      </ul><!-- END SLIDESHOW -->
+					</div><!-- END SINGLE SIDEBAR ELEMENT -->

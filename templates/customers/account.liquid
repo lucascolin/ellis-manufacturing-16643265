@@ -1,0 +1,92 @@
+{% layout settings.customer_layout %}
+			<div class="row start-row">
+				<div id="section-headline" class="col-xs-48">
+					<h2>{{ 'customer.account.title' | t }}</h2>
+				</div>
+			</div>
+			<div class="row">
+				<article class="col-lg-31 col-md-26">
+					<div id="content" class="full left white-bg">
+
+                      <h4>{{ 'customer.orders.title' | t }}</h4>
+
+                      {% if customer.orders.size != 0 %}
+
+                        <div class="table-wrap">
+                          <table class="full">
+                            <thead>
+                              <tr>
+                                <th>{{ 'customer.orders.order_number' | t }}</th>
+                                <th>{{ 'customer.orders.date' | t }}</th>
+                                <th>{{ 'customer.orders.payment_status' | t }}</th>
+                                <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                                <th>{{ 'customer.orders.total' | t }}</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for order in customer.orders %}
+                                <tr>
+                                  <td>{{ order.name | link_to: order.customer_url }}</td>
+                                  <td>{{ order.created_at | date: "%b %d, %Y" }}</td>
+                                  <td>{{ order.financial_status_label }}</td>
+                                  <td>{{ order.fulfillment_status_label }}</td>
+                                  <td>{{ order.total_price | money }}</td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+
+                      {% else %}
+
+                        <p>{{ 'customer.orders.none' | t }}</p>
+
+                      {% endif %}
+
+					</div>
+				</article>
+				<aside class="col-lg-15 col-md-20 col-md-offset-2">
+                  <div class="aside-inside aside-account">
+						<div class="full left single-headline">
+							<h4>{{ 'customer.account.details' | t }}</h4>
+						</div>
+						<div class="full left white-bg">
+						  <h5>{{ customer.name }}</h5>
+
+                          {% if customer.default_address != nil %}
+                            <p>
+                            {{ customer.default_address.address1 }}<br>
+
+                            {% if customer.default_address.address2 != "" %}
+                              {{ customer.default_address.address2 }}<br>
+                            {% endif %}
+
+                            {% if customer.default_address.city != "" %}
+                              {{ customer.default_address.city }}<br>
+                            {% endif %}
+
+                            {% if customer.default_address.province_code != "" %}
+                              {{ customer.default_address.province_code | upcase }}<br>
+                            {% endif %}
+
+                            {% if customer.default_address.zip != "" %}
+                              {{ customer.default_address.zip | upcase }}<br>
+                            {% endif %}
+
+                            {% if customer.default_address.country != "" %}
+                              {{ customer.default_address.country }}<br>
+                            {% endif %}
+
+                            {% if customer.default_address.phone != "" %}
+                              {{ customer.default_address.phone }}
+                            {% endif %}
+                            </p>
+
+                          {% endif %}
+
+                          <p><a href="/account/addresses">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a></p>
+                    	</div>
+
+                  </div>
+				</aside>
+			</div>

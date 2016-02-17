@@ -1,0 +1,82 @@
+{% layout settings.customer_layout %}
+			<div class="row start-row">
+				<div id="section-headline" class="col-xs-48">
+					<h2>{{ 'customer.activate_account.title' | t }}</h2>
+				</div>
+			</div>
+			<div class="row">
+				<article class="col-lg-31 col-md-26">
+					<div id="content" class="full left white-bg">
+                      <p>{{ 'customer.activate_account.subtext' | t }}</p>
+
+                      {% comment %}
+                        This form must use 'activate_customer_password'
+                      {% endcomment %}
+                      {% form 'activate_customer_password' %}
+
+                        {% include 'form-errors-custom' %}
+
+                        <div class="full left">
+                          <label for="CustomerPassword">{{ 'customer.activate_account.password' | t }}</label><br />
+                          <input type="password" value="" name="customer[password]" id="CustomerPassword">
+                        </div>
+
+                        <div class="full left">
+                          <label for="CustomerPasswordConfirmation">{{ 'customer.activate_account.password_confirm' | t }}</label><br />
+                          <input type="password" value="" name="customer[password_confirmation]" id="CustomerPasswordConfirmation">
+                        </div>
+
+                        <div class="text-center">
+                          <p>
+                            <input type="submit" class="btn" value="{{ 'customer.activate_account.submit' | t }}">
+                          </p>
+                          <input type="submit" class="btn--secondary" name="decline" value="{{ 'customer.activate_account.cancel' | t }}">
+                        </div>
+                      {% endform %}
+					</div>
+				</article>
+				<aside class="col-lg-15 col-md-20 col-md-offset-2">
+                  <div class="aside-inside aside-account">
+						<div class="full left single-headline">
+							<h4>{{ 'customer.account.details' | t }}</h4>
+						</div>
+						<div class="full left white-bg">
+						  <h5>{{ customer.name }}</h5>
+
+                          {% if customer.default_address != nil %}
+                            <p>
+                            {{ customer.default_address.address1 }}<br>
+
+                            {% if customer.default_address.address2 != "" %}
+                              {{ customer.default_address.address2 }}<br>
+                            {% endif %}
+
+                            {% if customer.default_address.city != "" %}
+                              {{ customer.default_address.city }}<br>
+                            {% endif %}
+
+                            {% if customer.default_address.province_code != "" %}
+                              {{ customer.default_address.province_code | upcase }}<br>
+                            {% endif %}
+
+                            {% if customer.default_address.zip != "" %}
+                              {{ customer.default_address.zip | upcase }}<br>
+                            {% endif %}
+
+                            {% if customer.default_address.country != "" %}
+                              {{ customer.default_address.country }}<br>
+                            {% endif %}
+
+                            {% if customer.default_address.phone != "" %}
+                              {{ customer.default_address.phone }}
+                            {% endif %}
+                            </p>
+
+                          {% endif %}
+
+                          <p><a href="/account/addresses">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a></p>
+                    	</div>
+
+                  </div>
+				</aside>
+			</div>

@@ -1,0 +1,108 @@
+			<div class="row start-row">
+				<div id="section-headline" class="col-md-14 col-md-offset-0 col-xs-44 col-xs-offset-2">
+					<h2>Our Products</h2>
+				</div>
+                {% assign collection = collections.[settings.best_sellers] %}
+                {% capture filter_label %}filter_no_1_label{% endcapture %}
+              	{% capture filter_linklist %}filter_no_1_linklist{% endcapture %}
+                      {% include 'filter-by-tag' with settings[filter_linklist] %}
+                        <script>
+                            $(function () {
+                                var popped = ('state' in window.history && window.history.state !== null),
+                                    initialURL = location.href;
+
+                                //function to handle the scenarios where back and forward buttons used in browser
+                                $(window).bind("popstate", function (e) {
+                                    // Ignore inital popstate that some browsers fire on page load
+                                    var initialPop = !popped && location.href == initialURL;
+                                    popped = true;
+                                    if (initialPop) {
+                                        return;
+                                    }
+                                    ajaxLoadPage(location.href);
+                                });
+
+                                //the ajax function that does the AJAX calls to get the products and load them into the grid
+                                var ajaxLoadPage = function (url) {
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: url,
+                                        data: {},
+                                        complete: function (data) {
+                                          $('#all-product-area').html($("#collection-product-area", data.responseText).html());
+                                          $('.sameheight-product-title').equalHeightColumns();
+                                          $('.vertalign').each(function() {$( this ).verticalAlign();});
+                                        }
+                                    });
+                                }
+
+                                {% capture pathUrl %}{% if collection.handle %}{% capture url %}/collections/{{ collection.handle }}{% endcapture %}{{ url }}{% elsif collection.all_products_count > 0 and collection.products.first.type == collection.title %}{{ link_to_type }}{% elsif collection.all_products_count > 0 and collection.products.first.vendor == collection.title %}{{ link_to_vendor }}{% endif %}{% endcapture %}  
+
+                                var collectionUrl = window.location.protocol+'//'+window.location.hostname+'{{ pathUrl}}';    
+
+                                //this detects one of the filters being clicked that should then 
+                                //decide what URL to call in order to get the newly filtered product grid
+                                $("#filter-area ul li a").click(function (event) {
+                                    event.preventDefault();
+                                    var title = $(this).attr('title');
+                                    var self = this;
+
+
+                                    // check if the click is on a "remove tag" filter
+                                    var isRemoveFilter = false;
+                                    if ($(this).parent().hasClass('current')) {
+                                        $(this).parent().removeClass('current');
+                                        $(this).removeAttr('title');
+                                        isRemoveFilter = true;
+                                    } else if ($(this).parent().hasClass("all")) {
+                                        //check if "all brands" or "all colors" clicked
+                                        var ul = $(this).parent().parent();
+                                        $('li', ul).removeClass('current');
+                                        $('li a', ul).removeAttr('title');
+                                        isRemoveFilter = true;
+                                    } else {
+                                        //otherwise it means click on an unfiltered tag
+                                        //remove other "Remove tag" in same filter row
+                                        var ul = $(this).parent().parent();
+                                        $('li', ul).removeClass('current');
+                                        $('li a', ul).removeAttr('title');
+
+                                        //add the active tag onto the new filter that was clicked
+                                        $(this).parent().addClass('current');
+                                        $(this).attr('title', 'Remove tag ' + $(this).text());
+                                    }
+
+                                    var activeBrand = '';
+                                    if ($('#filter-area ul li.current a').length > 0) {
+                                        activeBrand = $('#filter-area ul li.active a').attr('href');
+                                    }
+
+                                    var selectedBrand = '';
+                                    if (!isRemoveFilter) {
+                                        selectedBrand = $(this).text();
+                                    }
+                                   
+
+                                    //console.log('activeBrand = ' + activeBrand);
+                                    //console.log('selectedBrand = ' + selectedBrand);
+
+                                    var url = $(this).attr('href');
+
+                                    var newBrand = selectedBrand || activeBrand;
+                                    //console.log('newBrand = ' + newBrand);
+
+                                    //console.log(url);	
+                                    ajaxLoadPage(url);
+                                });
+
+                            });
+                        </script>
+			</div>
+			<div class="row" id="all-product-area">
+              {% for product in collections.all.products %}
+                  <!-- Bold: CSP 2 -->
+                  {% include 'boldcsp_helper' with 'collection' %}
+                  <!-- // end CSP 2 -->
+              	{% include 'product-grid-item' %}
+			  {% endfor %}
+			</div>

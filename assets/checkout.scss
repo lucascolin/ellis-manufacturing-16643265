@@ -1,0 +1,196 @@
+body {
+  background:#f4f7f9;
+  font-family: 'Avenir Medium';
+  color:#333;
+}
+h1, h2, h3, h4, h5 {
+  font-family: 'Mission Gothic Regular', 'Mission Gothic', 'ITC Mission Gothic', 'Franklin Gothic Medium', 'Franklin Gothic', 'ITC Franklin Gothic', Arial, sans-serif;
+}
+h1 {
+	font-size:em(38);
+}
+h2 {
+	font-size: em(32);
+}	
+h3 {
+	font-size: em(26);
+}
+h4 {
+	font-size: em(19);
+}
+h5 {
+  font-size: em(16);
+}
+
+@font-face {
+	font-family:'Avenir Light';
+	src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-light.eot?8075579657602093228');
+	src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-light.eot?8075579657602093228?#iefix') format('embedded-opentype'),
+		url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-light.woff?8075579657602093228') format('woff'),
+		url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-light.ttf?8075579657602093228') format('truetype'),
+		url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-light.svg?8075579657602093228#avenir-light') format('svg');
+}
+
+@font-face {
+  font-family: 'Avenir Medium';
+  src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-medium.eot?8075579657602093228');
+  src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-medium.eot?8075579657602093228?#iefix') format('embedded-opentype'),
+       url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-medium.woff2?8075579657602093228') format('woff2'),
+       url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-medium.woff?8075579657602093228') format('woff'),
+       url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-medium.ttf?8075579657602093228') format('truetype');
+}
+
+@font-face {
+	font-family:'Avenir Medium Oblique';
+	src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-mediumoblique.eot?8075579657602093228');
+	src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-mediumoblique.eot?8075579657602093228?#iefix') format('embedded-opentype'),
+		url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-mediumoblique.woff?8075579657602093228') format('woff'),
+		url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-mediumoblique.ttf?8075579657602093228') format('truetype'),
+		url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-mediumoblique.svg?8075579657602093228#avenir-mediumoblique') format('svg');
+	font-weight: 500;
+	font-style: oblique;
+	font-stretch: normal;
+	unicode-range: U+0020-2212;
+}
+
+@font-face {
+	font-family:'Avenir Heavy';
+  src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-heavy.eot?8075579657602093228');
+	src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-heavy.eot?%23iefix&8075579657602093228') format('embedded-opentype'),
+		url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-heavy.woff?8075579657602093228') format('woff'),
+		url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-heavy.ttf?8075579657602093228') format('truetype'),
+		url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-heavy.svg%23avenir-heavy?8075579657602093228') format('svg');
+	font-weight: 900;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-2212;
+}
+
+@font-face {
+	font-family:'Avenir Heavy Oblique';
+	src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-heavyoblique.eot?8075579657602093228');
+	src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-heavyoblique.eot?%23iefix&8075579657602093228') format('embedded-opentype'),
+		url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-heavyoblique.woff?8075579657602093228') format('woff'),
+		url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-heavyoblique.ttf?8075579657602093228') format('truetype'),
+		url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/avenir-heavyoblique.svg%23Avenir-HeavyOblique?8075579657602093228') format('svg');
+	font-weight: 900;
+	font-style: oblique;
+	font-stretch: normal;
+	unicode-range: U+0020-2212;
+}
+
+@font-face {
+    font-family: 'mission_gothicbold_italic';
+    src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_bold_italic-webfont.eot?8075579657602093228');
+    src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_bold_italic-webfont.eot?%23iefix&8075579657602093228') format('embedded-opentype'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_bold_italic-webfont.woff2?8075579657602093228') format('woff2'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_bold_italic-webfont.woff?8075579657602093228') format('woff'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_bold_italic-webfont.ttf?8075579657602093228') format('truetype'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_bold_italic-webfont.svg%23mission_gothicbold_italic?8075579657602093228') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mission Gothic Light';
+    src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_light-webfont.eot?8075579657602093228');
+    src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_light-webfont.eot?%23iefix&8075579657602093228') format('embedded-opentype'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_light-webfont.woff2?8075579657602093228') format('woff2'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_light-webfont.woff?8075579657602093228') format('woff'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_light-webfont.ttf?8075579657602093228') format('truetype'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_light-webfont.svg%23mission_gothiclight?8075579657602093228') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mission Gothic Light Italic';
+    src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_light_italic-webfont.eot?8075579657602093228');
+    src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_light_italic-webfont.eot?%23iefix&8075579657602093228') format('embedded-opentype'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_light_italic-webfont.woff2?8075579657602093228') format('woff2'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_light_italic-webfont.woff?8075579657602093228') format('woff'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_light_italic-webfont.ttf?8075579657602093228') format('truetype'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_light_italic-webfont.svg%23mission_gothiclight_italic?8075579657602093228') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mission Gothic Regular';
+    src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_regular-webfont.eot?8075579657602093228');
+    src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_regular-webfont.eot?%23iefix&8075579657602093228') format('embedded-opentype'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_regular-webfont.woff2?8075579657602093228') format('woff2'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_regular-webfont.woff?8075579657602093228') format('woff'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_regular-webfont.ttf?8075579657602093228') format('truetype'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_regular-webfont.svg%23mission_gothicregular?8075579657602093228') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mission Gothic Regular Italic';
+    src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_regular_italic-webfont.eot?8075579657602093228');
+    src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_regular_italic-webfont.eot?%23iefix&8075579657602093228') format('embedded-opentype'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_regular_italic-webfont.woff2?8075579657602093228') format('woff2'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_regular_italic-webfont.woff?8075579657602093228') format('woff'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_regular_italic-webfont.ttf?8075579657602093228') format('truetype'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_regular_italic-webfont.svg%23mission_gothicregular_italic?8075579657602093228') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mission Gothic Bold';
+    src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_bold-webfont.eot?8075579657602093228');
+    src: url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_bold-webfont.eot?%23iefix&8075579657602093228') format('embedded-opentype'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_bold-webfont.woff2?8075579657602093228') format('woff2'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_bold-webfont.woff?8075579657602093228') format('woff'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_bold-webfont.ttf?8075579657602093228') format('truetype'),
+         url('//cdn.shopify.com/s/files/1/0841/3315/t/3/assets/mission_gothic_bold-webfont.svg%23mission_gothicbold?8075579657602093228') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@media print {
+  .header {
+    padding: 2em 0;
+  }
+  #additional-content, .section.section--thank-you, .product-list .product__image {
+    display:none;
+  }
+  .section {
+    width:50%;
+    float:left;
+  }
+  .order-summary {
+    width:100%;
+    float:left;
+  }
+  .product-list .product--has-image {
+    padding-left:0;
+  }
+  h1 {
+      font-size:34px;
+  }
+  h2 {
+      font-size:28px;
+  }	
+  h3, .order-summary .payment-due-container .payment-due__price {
+      font-size:22px;
+  }
+  h4, .shop__desc {
+      font-size:15px;
+  }
+  h5 {
+    font-size:12px;
+  }
+  .order-summary__section {
+    padding:1em;
+  }
+  .shop__logo {
+    max-width:140px;
+  }
+  .section {
+    padding:1.5em 0;
+  }
+}

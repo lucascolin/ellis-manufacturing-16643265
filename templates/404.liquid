@@ -1,0 +1,29 @@
+			<div class="row start-row">
+				<div id="section-headline" class="col-md-48">
+					<h2>{{ 'general.404.title' | t }}</h2>
+				</div>
+			</div>
+			<div class="row">
+				<article class="col-md-31">
+					<div id="content" class="full left white-bg">
+						<p>{{ 'general.404.subtext_html' | t }}</p>
+					</div>
+				</article>
+				<aside class="col-md-15 col-md-offset-2">
+					<div class="full left sidebar-single">
+						<div class="full left single-headline">
+							<h4>Popular Sellers</h4>
+						</div>
+						<ul class="product-slider">
+						{% assign thirds = 'col-md-48' %}
+                        {% for product in collections.featured.products %}
+							<li>
+                          {% include 'product-grid-item' with thirds %}
+							</li>
+                        {% endfor %}
+					</ul><!-- END SLIDESHOW -->
+					</div><!-- END SINGLE SIDEBAR ELEMENT -->
+{% include 'sidebar-gallery' %}
+{% include 'sidebar-assistance' %}
+				</aside>
+			</div>

@@ -1,0 +1,196 @@
+body {
+  background:#f4f7f9;
+  font-family: 'Avenir Medium';
+  color:#333;
+}
+h1, h2, h3, h4, h5 {
+  font-family: 'Mission Gothic Regular', 'Mission Gothic', 'ITC Mission Gothic', 'Franklin Gothic Medium', 'Franklin Gothic', 'ITC Franklin Gothic', Arial, sans-serif;
+}
+h1 {
+	font-size:em(38);
+}
+h2 {
+	font-size: em(32);
+}	
+h3 {
+	font-size: em(26);
+}
+h4 {
+	font-size: em(19);
+}
+h5 {
+  font-size: em(16);
+}
+
+@font-face {
+	font-family:'Avenir Light';
+	src: url('{{ 'avenir-light.eot' | asset_url }}');
+	src: url('{{ 'avenir-light.eot' | asset_url }}?#iefix') format('embedded-opentype'),
+		url('{{ 'avenir-light.woff' | asset_url }}') format('woff'),
+		url('{{ 'avenir-light.ttf' | asset_url }}') format('truetype'),
+		url('{{ 'avenir-light.svg' | asset_url }}#avenir-light') format('svg');
+}
+
+@font-face {
+  font-family: 'Avenir Medium';
+  src: url('{{ 'avenir-medium.eot' | asset_url }}');
+  src: url('{{ 'avenir-medium.eot' | asset_url }}?#iefix') format('embedded-opentype'),
+       url('{{ 'avenir-medium.woff2' | asset_url }}') format('woff2'),
+       url('{{ 'avenir-medium.woff' | asset_url }}') format('woff'),
+       url('{{ 'avenir-medium.ttf' | asset_url }}') format('truetype');
+}
+
+@font-face {
+	font-family:'Avenir Medium Oblique';
+	src: url('{{ 'avenir-mediumoblique.eot' | asset_url }}');
+	src: url('{{ 'avenir-mediumoblique.eot' | asset_url }}?#iefix') format('embedded-opentype'),
+		url('{{ 'avenir-mediumoblique.woff' | asset_url }}') format('woff'),
+		url('{{ 'avenir-mediumoblique.ttf' | asset_url }}') format('truetype'),
+		url('{{ 'avenir-mediumoblique.svg' | asset_url }}#avenir-mediumoblique') format('svg');
+	font-weight: 500;
+	font-style: oblique;
+	font-stretch: normal;
+	unicode-range: U+0020-2212;
+}
+
+@font-face {
+	font-family:'Avenir Heavy';
+  src: url('{{ 'avenir-heavy.eot' | asset_url }}');
+	src: url('{{ 'avenir-heavy.eot?#iefix' | asset_url }}') format('embedded-opentype'),
+		url('{{ 'avenir-heavy.woff' | asset_url }}') format('woff'),
+		url('{{ 'avenir-heavy.ttf' | asset_url }}') format('truetype'),
+		url('{{ 'avenir-heavy.svg#avenir-heavy' | asset_url }}') format('svg');
+	font-weight: 900;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-2212;
+}
+
+@font-face {
+	font-family:'Avenir Heavy Oblique';
+	src: url('{{ 'avenir-heavyoblique.eot' | asset_url }}');
+	src: url('{{ 'avenir-heavyoblique.eot?#iefix' | asset_url }}') format('embedded-opentype'),
+		url('{{ 'avenir-heavyoblique.woff' | asset_url }}') format('woff'),
+		url('{{ 'avenir-heavyoblique.ttf' | asset_url }}') format('truetype'),
+		url('{{ 'avenir-heavyoblique.svg#Avenir-HeavyOblique' | asset_url }}') format('svg');
+	font-weight: 900;
+	font-style: oblique;
+	font-stretch: normal;
+	unicode-range: U+0020-2212;
+}
+
+@font-face {
+    font-family: 'mission_gothicbold_italic';
+    src: url('{{ 'mission_gothic_bold_italic-webfont.eot' | asset_url }}');
+    src: url('{{ 'mission_gothic_bold_italic-webfont.eot?#iefix' | asset_url }}') format('embedded-opentype'),
+         url('{{ 'mission_gothic_bold_italic-webfont.woff2' | asset_url }}') format('woff2'),
+         url('{{ 'mission_gothic_bold_italic-webfont.woff' | asset_url }}') format('woff'),
+         url('{{ 'mission_gothic_bold_italic-webfont.ttf' | asset_url }}') format('truetype'),
+         url('{{ 'mission_gothic_bold_italic-webfont.svg#mission_gothicbold_italic' | asset_url }}') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mission Gothic Light';
+    src: url('{{ 'mission_gothic_light-webfont.eot' | asset_url }}');
+    src: url('{{ 'mission_gothic_light-webfont.eot?#iefix' | asset_url }}') format('embedded-opentype'),
+         url('{{ 'mission_gothic_light-webfont.woff2' | asset_url }}') format('woff2'),
+         url('{{ 'mission_gothic_light-webfont.woff' | asset_url }}') format('woff'),
+         url('{{ 'mission_gothic_light-webfont.ttf' | asset_url }}') format('truetype'),
+         url('{{ 'mission_gothic_light-webfont.svg#mission_gothiclight' | asset_url }}') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mission Gothic Light Italic';
+    src: url('{{ 'mission_gothic_light_italic-webfont.eot' | asset_url }}');
+    src: url('{{ 'mission_gothic_light_italic-webfont.eot?#iefix' | asset_url }}') format('embedded-opentype'),
+         url('{{ 'mission_gothic_light_italic-webfont.woff2' | asset_url }}') format('woff2'),
+         url('{{ 'mission_gothic_light_italic-webfont.woff' | asset_url }}') format('woff'),
+         url('{{ 'mission_gothic_light_italic-webfont.ttf' | asset_url }}') format('truetype'),
+         url('{{ 'mission_gothic_light_italic-webfont.svg#mission_gothiclight_italic' | asset_url }}') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mission Gothic Regular';
+    src: url('{{ 'mission_gothic_regular-webfont.eot' | asset_url }}');
+    src: url('{{ 'mission_gothic_regular-webfont.eot?#iefix' | asset_url }}') format('embedded-opentype'),
+         url('{{ 'mission_gothic_regular-webfont.woff2' | asset_url }}') format('woff2'),
+         url('{{ 'mission_gothic_regular-webfont.woff' | asset_url }}') format('woff'),
+         url('{{ 'mission_gothic_regular-webfont.ttf' | asset_url }}') format('truetype'),
+         url('{{ 'mission_gothic_regular-webfont.svg#mission_gothicregular' | asset_url }}') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mission Gothic Regular Italic';
+    src: url('{{ 'mission_gothic_regular_italic-webfont.eot' | asset_url }}');
+    src: url('{{ 'mission_gothic_regular_italic-webfont.eot?#iefix' | asset_url }}') format('embedded-opentype'),
+         url('{{ 'mission_gothic_regular_italic-webfont.woff2' | asset_url }}') format('woff2'),
+         url('{{ 'mission_gothic_regular_italic-webfont.woff' | asset_url }}') format('woff'),
+         url('{{ 'mission_gothic_regular_italic-webfont.ttf' | asset_url }}') format('truetype'),
+         url('{{ 'mission_gothic_regular_italic-webfont.svg#mission_gothicregular_italic' | asset_url }}') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mission Gothic Bold';
+    src: url('{{ 'mission_gothic_bold-webfont.eot' | asset_url }}');
+    src: url('{{ 'mission_gothic_bold-webfont.eot?#iefix' | asset_url }}') format('embedded-opentype'),
+         url('{{ 'mission_gothic_bold-webfont.woff2' | asset_url }}') format('woff2'),
+         url('{{ 'mission_gothic_bold-webfont.woff' | asset_url }}') format('woff'),
+         url('{{ 'mission_gothic_bold-webfont.ttf' | asset_url }}') format('truetype'),
+         url('{{ 'mission_gothic_bold-webfont.svg#mission_gothicbold' | asset_url }}') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@media print {
+  .header {
+    padding: 2em 0;
+  }
+  #additional-content, .section.section--thank-you, .product-list .product__image {
+    display:none;
+  }
+  .section {
+    width:50%;
+    float:left;
+  }
+  .order-summary {
+    width:100%;
+    float:left;
+  }
+  .product-list .product--has-image {
+    padding-left:0;
+  }
+  h1 {
+      font-size:34px;
+  }
+  h2 {
+      font-size:28px;
+  }	
+  h3, .order-summary .payment-due-container .payment-due__price {
+      font-size:22px;
+  }
+  h4, .shop__desc {
+      font-size:15px;
+  }
+  h5 {
+    font-size:12px;
+  }
+  .order-summary__section {
+    padding:1em;
+  }
+  .shop__logo {
+    max-width:140px;
+  }
+  .section {
+    padding:1.5em 0;
+  }
+}

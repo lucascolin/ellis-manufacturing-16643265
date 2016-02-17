@@ -1,0 +1,60 @@
+{% paginate collection.products by 48 %}
+
+			<div class="row start-row">
+				<div id="section-headline" class="col-md-48">
+					<h2>{{ collection.title }}</h2>
+				</div>
+			</div>
+{% if collection.title contains 'Commercial Construction' or collection.title contains 'Residential Construction' or collection.title contains 'Search and Rescue' or collection.title contains 'Mining and Excavation'  %}
+			<div class="row">
+				<article class="col-md-31">
+					<div id="content" class="full left white-bg">
+						{{ collection.description }}
+					</div>
+				</article>
+				<aside class="col-md-15 col-md-offset-2">
+                  <div class="aside-inside">
+					{% include 'sidebar-assistance' %}
+                  </div>
+				</aside>
+			</div>
+{% endif %}
+			<div class="row collection-row">
+				<aside class="col-lg-10 col-md-14 col-md-offset-0 col-sm-24 col-sm-offset-12 col-xs-48">
+					<div class="full left sidebar-single filter-section">
+						<div class="full left single-headline tablet-toggle-view">
+							<h4>Refine</h4>
+						</div>
+						<div class="full left white-bg tablet-panel">
+                        {% include 'collection-sorting' %}
+                      </div>
+					</div>
+					{% include 'sidebar-assistance' %}
+                  <div class="full left tablet-hide mobile-hide">
+                    {% include 'sidebar-gallery' %}
+                  </div>
+				</aside>
+				<div class="col-lg-36 col-md-32 col-md-offset-2 col-xs-48 collection-products">
+                  <div id="collection-product-area">
+                    {% for product in collection.products %}
+                      <!-- Bold: CSP 2 -->
+                      {% include 'boldcsp_helper' with 'collection' %}
+                      <!-- // end CSP 2 -->
+                      {% assign thirds = 'col-lg-16 col-sm-24' %}
+                      {% include 'product-grid-item' with thirds %}
+                    {% else %}
+                      <p>{{ 'collections.general.no_matches' | t }}</p>
+                    {% endfor %}
+                  </div>
+                  <div class="pagination">
+                    {% if paginate.next %}
+					<div class="full left viewmore">
+						<div class="col-md-16 col-md-offset-16">
+                          <a id="nextPage" class="button" href="{{ paginate.next.url }}">View More</a>
+						</div>
+					</div>
+                    {% endif %}
+                  </div>
+				</div>
+			</div>
+{% endpaginate %}

@@ -1,0 +1,15 @@
+{% comment %}
+
+  To return only products in results:
+    - Uncomment hidden input with value="product" below
+
+{% endcomment %}
+<form id="search-form" class="search" action="/search" role="search">
+  <div class="input-group search-block">
+  {% comment %}<input type="hidden" name="type" value="product">{% endcomment %}
+    <input name="q" type="text" id="search-field" placeholder="{{ 'general.search.placeholder' | t }}" class="form-control textbox" autocomplete="off" autocorrect="off" autocapitalize="off" style="outline: none;" value="{{ search.terms }}">
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+    </span>
+  </div>
+</form>

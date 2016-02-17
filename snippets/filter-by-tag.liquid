@@ -1,0 +1,42 @@
+				<div id="filter-area" class="col-md-34 col-md-offset-0 col-xs-44 col-xs-offset-2">
+					<div class="filter-title">
+						<p>{{ settings.filter_no_1_label }}:</p>
+					</div>
+					<ul class="filter-types">
+                      {% assign all_filter_tags = '' %}
+                      {% for link in linklists[filter-by-tag].links %}
+                        {% capture link_title %}{{ link.title | downcase }}{% endcapture %}
+                        {% if collection.all_tags contains link_title %}
+                          {% capture all_filter_tags %}{{ all_filter_tags }},{{ link.title }},{% endcapture %}
+                        {% endif %}
+                      {% endfor %} 
+                      {% assign new_tags = '' %}
+                      {% for tag in current_tags %}
+                        {% unless all_filter_tags contains tag %}
+                          {% capture new_tags %}{{ new_tags }}+{{ tag | handle }}{% endcapture %}
+                        {% endunless %}
+                      {% endfor %}
+                      {% capture new_tags %}{{ new_tags | remove_first: '+' }}{% endcapture %}
+                      {% if collection.url != '' %}
+                        {% capture url %}{{ collection.url }}{% if new_tags != '' %}/{{ new_tags }}{% endif %}{% endcapture %}
+                      {% else %}
+                        {% capture url %}/collections/all{% if new_tags != '' %}/{{ new_tags }}{% endif %}{% endcapture %}
+                      {% endif %}
+                      <li class="all current">{{ 'All ' | link_to: url }}</li>
+                      {% for link in linklists[filter-by-tag].links %}
+                        {% capture link_title %}{{ link.title | downcase }}{% endcapture %}
+                        {% if collection.all_tags contains link_title %}
+                          {% if current_tags contains link.title %}
+                            <li class="{{ link.title | handle }} active">{{ link.title | link_to_remove_tag: link.title }}</li>
+                          {% else %}
+                            {% if collection.url != '' %}
+                              {% capture url %}{{ collection.url }}/{% if new_tags != '' %}{{ new_tags }}+{% endif %}{{ link.title | handle }}{% endcapture %}
+                            {% else %}
+                              {% capture url %}/collections/all/{% if new_tags != '' %}{{ new_tags }}+{% endif %}{{ link.title | handle }}{% endcapture %}
+                            {% endif %}
+                            <li class="{{ link.title | handle }}">{{ link.title | link_to: url }}</li>
+                          {% endif %}
+                        {% endif %}
+                      {% endfor %}
+					</ul>
+				</div>

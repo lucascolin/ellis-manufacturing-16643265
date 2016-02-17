@@ -1,0 +1,58 @@
+			<div class="row start-row">
+				<div id="section-headline" class="col-md-48">
+					<h2>{{ blog.title }}</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-23">
+					<div id="content" class="full left white-bg">
+                      <p>{{ page_description | escape }}</p>
+                      <hr />
+                      <h3>Interactive</h3>
+                      <ul id="interactive-products">
+{% paginate blog.articles by 100 %}
+                      {% for article in blog.articles %}
+						{% for tag in article.tags %}
+                      	  {% if tag contains 'interactive' %}
+                      		<li class="full left">
+                            {% capture prod_id %}{{ tag | remove: 'interactive-' }}{% endcapture %}
+                            {% for product in collections.all.products %}
+                              {% capture loop_id %}{{ product.id }}{% endcapture %}
+                              {% if loop_id == prod_id %}
+                                {% include 'boldcsp_helper' with 'collection' %}
+								{% include 'product-list-item' %}
+                              {% endif %}
+                            {% endfor %}
+		                    </li>
+	                      {% endif %}
+                        {% endfor %}
+                      {% endfor %}
+{% endpaginate %}
+	                  </ul>
+                      <hr />
+                      <h3>Video</h3>
+{% paginate blog.articles by 100 %}
+                      {% for article in blog.articles %}
+						{% for tag in article.tags %}
+                      	  {% if tag contains 'video' %}
+                      		<div class="col-md-48 col-sm-24">
+                              <div class="full left paddedbottom">
+                                <p>{{ article.title }}</p>
+                                <div class="videoWrapper">
+                                  {{ article.content }}
+                                </div>
+                              </div>
+	                        </div>
+	                      {% endif %}
+                        {% endfor %}
+                      {% endfor %}
+{% endpaginate %}
+					</div>
+				</div>
+				<div class="col-md-23 col-md-offset-2">
+					<div id="content-second" class="full left white-bg">
+                      <h3>Images</h3>
+                        <div id="plusgallery" data-userid="103217347398696159054" data-type="google"></div>
+                    </div>
+				</div>
+			</div>

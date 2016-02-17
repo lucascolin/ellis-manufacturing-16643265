@@ -1,0 +1,9 @@
+					<div class="full left sidebar-single sidebar-assistance">
+						<div class="full left single-headline">
+							<h4>{{ settings.need_assistance_header }}</h4>
+						</div>
+						<div class="full left white-bg">
+							<p>{{ settings.need_assistance_text }}</p>
+							<a class="assistance" href="tel:{{ settings.phone_number | remove:'-' | remove:'(' | remove:')' | remove:' ' | remove:'.' }}">{{ settings.phone_number }}</a>
+						</div>
+					</div><!-- END SINGLE SIDEBAR ELEMENT -->

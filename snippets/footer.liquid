@@ -1,0 +1,77 @@
+	<section id="validators-second" class="full left">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 validator-point">
+					<img src="{{ 'icon-validator-compass.png' | asset_url }}" alt="Compass Icon" />
+					<p>Super Fast Delivery</p>
+				</div>
+				<div class="col-sm-12 validator-point">
+					<img src="{{ 'icon-validator-globe.png' | asset_url }}" alt="Globe Icon" />
+					<p>International Shipping</p>
+				</div>
+				<div class="col-sm-12 validator-point">
+					<img src="{{ 'icon-validator-group.png' | asset_url }}" alt="Group Icon" />
+					<p>Technical Support Staff</p>
+				</div>
+				<div class="col-sm-12 validator-point">
+					<img src="{{ 'icon-validator-check.png' | asset_url }}" alt="Check Icon" />
+					<p>Returns &amp; Exchanges</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer id="footer" class="full left">
+		<div class="container">
+			<div class="row footer-nav">
+				<div class="col-md-10 col-sm-14 col-sm-offset-1">
+					<h5 class="mobile-toggle-view">Quick Links</h5>
+                  	<div class="mobile-panel">
+                      <ul>
+                        {% for link in linklists.footer.links %}
+                          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+				</div>
+				<div class="col-md-10 col-sm-14 col-sm-offset-2">
+					<h5 class="mobile-toggle-view">Customer Support</h5>
+                  	<div class="mobile-panel">
+                      <ul>
+                        {% for link in linklists.footer_customer_service.links %}
+                          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+				</div>
+				<div class="col-md-10 col-sm-14 col-sm-offset-2">
+					<h5 class="mobile-toggle-view">Contact Us</h5>
+                  	<div class="mobile-panel">
+                      <p>We are available to help with any questions or concerns.</p>
+                      <a class="button" href="/pages/contact-us/">Email us</a>
+                      <a class="button" href="tel:18006548311">(800)654-8311</a>
+	                </div>
+				</div>
+				<div class="col-md-10 col-md-offset-2 col-sm-32 col-sm-offset-8">
+					<h5 class="mobile-toggle-view">Stay in Touch</h5>
+                  	<div class="mobile-panel">
+                      <p>Keep up on all the the latest product news and innovation.</p>
+                      {% if settings.footer_newsletter_enable != blank %}
+                      <a class="button open-popup-link" href="#newsletter-popup">Newsletter Signup</a>
+                      <div id="newsletter-popup" class="white-popup mfp-hide">
+                        {{ settings.footer_newsletter_enable }}
+                      </div>
+                      {% endif %}
+                      <ul class="socials">
+                          {% if settings.social_facebook_link != blank %}<li><a href="{{ settings.social_facebook_link }}" class="facebook">Facebook</a></li>{% endif %}
+                          {% if settings.social_linkedin_link != blank %}<li><a href="{{ settings.social_linkedin_link }}" class="linkedin">LinkedIn</a></li>{% endif %}
+                          {% if settings.social_instagram_link != blank %}<li><a href="{{ settings.social_instagram_link }}" class="instagram">Instagram</a></li>{% endif %}
+                      	  {% if settings.social_youtube_link != blank %}<li><a href="{{ settings.social_youtube_link }}" class="youtube">YouTube</a></li>{% endif %}
+                      </ul>
+                  	</div>
+				</div>
+			</div>
+		</div>
+		<div id="footer-bottom" class="full left">
+			<p>&copy; {{ 'now' | date: "%Y" }} Ellis Manufacturing Company Inc.</p>
+		</div>
+	</footer>

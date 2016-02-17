@@ -1,0 +1,65 @@
+				<nav role="navigation" class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<div id="navbar" class="navbar-collapse collapse">
+							<ul class="nav navbar-nav">
+                              {% for link in linklists.main-menu.links %}
+                              {% assign child_list_handle = link.title | handleize %}
+							  {% if linklists[child_list_handle].links == blank %}
+                              <li class="{% if link.active %} current{% endif %}">
+                                <a href="{{ link.url }}">
+                                  <span>{{ link.title }}</span></a>
+                              </li>
+                              {% else %}
+                              <li class="dropdown sameheight"><a href="{{ link.url }}" class="dropdown-toggle{% if link.active %} current{% endif %}" data-toggle="dropdown">
+                                Shop by<br /><span>{{ link.title }}</span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                  {% for l in linklists[link.handle].links %}
+                                  {% assign child_list_handle = l.title | handleize %}
+                                  {% if linklists[child_list_handle].links == blank %}
+                                    <li><a href="{{ l.url }}"{% if l.active %} class="current"{% endif %}>{{ l.title }}</a></li>
+                                  {% else %}
+                                      <li class="dropdown-submenu{% if l.active %} current{% endif %}">
+                                        <a href="{{ l.url }}">{{ l.title }}</a>
+                                        <ul class="dropdown-menu">
+                                          {% for ll in linklists[l.handle].links %}
+                                          {% assign child_list_handle = ll.title | handleize %}
+                                          {% if linklists[child_list_handle].links == blank %}
+                                            <li><a href="{{ ll.url }}"{% if ll.active %} class="current"{% endif %}>{{ ll.title }}</a></li>
+                                          {% else %}
+                                              <li class="dropdown-submenu{% if ll.active %} current{% endif %}">
+                                                <a href="{{ ll.url }}">{{ ll.title }}</a>
+                                                <ul class="dropdown-menu">
+                                                  {% for lll in linklists[ll.handle].links %}
+                                                    <li{% if lll.active %} class="current"{% endif %}><a href="{{ lll.url }}">{{ lll.title }}</a></li>
+                                                  {% endfor %}
+                                                </ul>
+                                              </li>
+                                          {% endif %}
+                                          {% endfor %}
+                                        </ul>
+                                      </li>
+                                  {% endif %}
+                                  {% endfor %}
+                                </ul>
+                              </li>
+                              {% endif %}
+                              {% endfor %}
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+                              {% for link in linklists.main-menu-right.links %}
+								<li class="sameheight">
+									<a href="{{ link.url }}">{{ link.title }}</a>
+								</li>
+                              {% endfor %}
+							</ul>
+						</div><!--/.nav-collapse -->
+					</div>
+				</nav>

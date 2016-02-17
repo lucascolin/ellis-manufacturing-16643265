@@ -1,0 +1,235 @@
+[
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "General Colors"
+      },
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary Color",
+        "default": "#ec9b3c",
+        "info": "Used for text links, and primary buttons"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary",
+        "label": "Secondary Color",
+        "default": "#056839",
+        "info": "Used for secondary buttons"
+      },
+      {
+        "type": "color",
+        "id": "color_body_bg",
+        "label": "Body Background",
+        "default": "#f4f7f9"
+      },
+      {
+        "type": "header",
+        "content": "Body Text"
+      },
+      {
+        "type": "color",
+        "id": "color_body_text",
+        "label": "Body Text",
+        "default": "#333333"
+      }
+    ]
+  },
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Logo"
+      },
+      {
+        "type": "checkbox",
+        "id": "logo_use_image",
+        "label": "Use Custom Logo"
+      },
+      {
+        "type": "image",
+        "id": "logo.svg",
+        "label": "Custom Logo",
+        "max-width": 450,
+        "max-height": 200,
+        "info": "Maximum logo dimensions are 450px wide by 200px high. The uploaded file will be resized to fit within those constraints. An SVG file is suggested."
+      },
+      {
+        "type": "header",
+        "content": "Banner"
+      },
+      {
+        "type": "text",
+        "id": "default_banner_text",
+        "label": "Default Banner Text",
+        "default": "Time-tested, affordable shoring &amp; bracing products."
+      },
+      {
+        "type": "image",
+        "id": "bg-header.jpg",
+        "label": "Default Header Background",
+        "max-width": 1800,
+        "max-height": 465,
+        "info": "Maximum background dimensions are 1800px wide by 465px high. The uploaded file will be resized to fit within those constraints."
+      }
+    ]
+  },
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook link"
+      },
+      {
+        "type": "text",
+        "id": "social_linkedin_link",
+        "label": "LinkedIn link"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram link"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "YouTube Link"
+      },
+      {
+        "type": "textarea",
+        "id": "footer_newsletter_enable",
+        "label": "Popup Newsletter Form"
+      }
+    ]
+  },
+  {
+    "name": "Cart Page",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_notes_enable",
+        "label": "Allow notes with orders"
+      },
+      {
+        "type": "checkbox",
+        "id": "ajax_cart_enable",
+        "label": "Enable Ajaxify Cart",
+        "info": "[View Documentation](http:\/\/shopify.com\/timber#ajax-cart)"
+      }
+    ]
+  },
+  {
+    "name": "Home Page",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product Filter Area"
+      },
+      {
+        "type": "collection",
+        "id": "best_sellers",
+        "label": "Select a Collection"
+      },
+      {
+        "type": "text",
+        "id": "filter_no_1_label",
+        "label": "Filter Label"
+      },
+      {
+        "type": "link_list",
+        "id": "filter_no_1_linklist",
+        "label": "Filter Linklist"
+      }
+    ]
+  },
+  {
+    "name": "Sidebars",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Need Assistance Area"
+      },
+      {
+        "type": "text",
+        "id": "need_assistance_header",
+        "label": "Header"
+      },
+      {
+        "type": "textarea",
+        "id": "need_assistance_text",
+        "label": "Text"
+      },
+      {
+        "type": "header",
+        "content": "Supplier Assistance Area"
+      },
+      {
+        "type": "text",
+        "id": "supplier_assistance_header",
+        "label": "Header"
+      },
+      {
+        "type": "textarea",
+        "id": "supplier_assistance_text",
+        "label": "Text"
+      },
+      {
+        "type": "header",
+        "content": "Gallery Area"
+      },
+      {
+        "type": "text",
+        "id": "gallery_header",
+        "label": "Header"
+      },
+      {
+        "type": "image",
+        "id": "bg-sidebar-gallery.jpg",
+        "label": "Gallery Link Background",
+        "max-width": 500,
+        "max-height": 750,
+        "info": "Maximum background dimensions are 500px wide by 750px high. The uploaded file will be resized to fit within those constraints."
+      }
+    ]
+  },
+  {
+    "name": "Collection Page",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Shop by Product Filter"
+      },
+      {
+        "type": "text",
+        "id": "product_filter_tags",
+        "label": "Add Industry Tags (seprate with ,)"
+      },
+      {
+        "type": "header",
+        "content": "Shop by Industry Filter"
+      },
+      {
+        "type": "text",
+        "id": "industry_filter_tags",
+        "label": "Add Product Tags (seprate with ,)"
+      }
+    ]
+  },
+  {
+    "name": "Company Info",
+    "settings": [
+      {
+        "type": "text",
+        "id": "phone_number",
+        "label": "Phone Number",
+        "default": "(800) 654-8311"
+      }
+    ]
+  }
+]

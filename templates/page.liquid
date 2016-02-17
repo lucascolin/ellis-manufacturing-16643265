@@ -1,0 +1,20 @@
+			<div class="row start-row">
+				<div id="section-headline" class="col-xs-48">
+					<h2>{{ page.title }}</h2>
+				</div>
+			</div>
+			<div class="row">
+				<article class="col-lg-31 col-md-26">
+					<div id="content" class="full left white-bg">
+						{{ page.content }}
+					</div>
+				</article>
+				<aside class="col-lg-15 col-md-20 col-md-offset-2">
+                  <div class="aside-inside">
+{% include 'sidebar-popular' %}
+{% include 'sidebar-gallery' %}
+{% include 'sidebar-assistance' %}
+{% include 'sidebar-supplier' %}
+                  </div>
+				</aside>
+			</div>

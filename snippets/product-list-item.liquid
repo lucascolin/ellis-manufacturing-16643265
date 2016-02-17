@@ -1,0 +1,37 @@
+{% unless current_collection == blank %}
+  {% assign current_collection = collection %}
+{% endunless %}
+
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+{% assign sold_out = true %}
+{% if product.available  %}
+  {% assign sold_out = false %}
+{% endif %}
+
+{% include 'boldcsp_helper' with 'collection' %}
+
+								<div class="full left{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
+                                  <div class="col-sm-26{% cycle '', ' col-sm-push-22' %} vertalign">
+                                    <div class="videoWrapper">
+                                    {% if article.content contains 'iframe' %}
+                                      {{ article.content }}
+                                    {% else %}
+                                      <a href="{{ product.url | within: collection }}"><img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.title }}" /></a>
+                                    {% endif %}
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-20{% cycle ' col-sm-offset-2', ' col-sm-pull-26' %} vertalign">
+                                    <h6>{{ product.title }}</h6>
+                                    {% if product_variants_size != 1 %}<h6 class="options">{{ product.variants.length }} Options Available</h6>{% endif %}
+                                    {% comment %}
+                                    <div class="price">
+                                        {% if product_price_varies %}<span>{{ 'products.general.from_text_html' | t }}</span><br />{% endif %}${{ product_price | money_without_currency | remove: '.00' }}
+                                    </div>
+                                    {% endcomment %}
+                                    <a class="button" href="{{ product.url | within: collection }}">Select Options</a>
+                                  </div>
+		                        </div>

@@ -1,0 +1,270 @@
+{% layout settings.customer_layout %}
+			<div class="row start-row">
+				<div id="section-headline" class="col-xs-48">
+				    <h2>Supplier Signup</h2>
+				</div>
+			</div>
+			<div class="row register-form-row">
+            {% form 'create_customer' %}
+				<article class="col-md-23">
+					<div id="content" class="full left white-bg supplier-signup-section">
+                      <h3>{{ 'customer.register.title' | t }}</h3>
+                        {% include 'form-errors-custom' %}
+                      <input type="hidden" id="customer_tags" name="customer[tags]" value="Supplier - Awaiting Approval"/> 
+					  <div class="full left">
+                        <label for="FirstName" class="label--hidden">{{ 'customer.register.first_name' | t }}</label><br />
+                        <input type="text" name="customer[first_name]" id="FirstName" placeholder="{{ 'customer.register.first_name' | t }}" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocapitalize="words" autofocus required>
+                      </div>
+					  <div class="full left">
+                        <label for="LastName" class="label--hidden">{{ 'customer.register.last_name' | t }}</label><br />
+                        <input type="text" name="customer[last_name]" id="LastName" placeholder="{{ 'customer.register.last_name' | t }}" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocapitalize="words" required>
+                      </div>
+					  <div class="full left">
+                        <label for="Email" class="label--hidden">{{ 'customer.register.email' | t }}</label><br />
+                        <input type="email" name="customer[email]" id="Email" placeholder="{{ 'customer.register.email' | t }}" {% if form.errors contains "email" %} class="error"{% elsif form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off" required>
+                      </div>
+					  <div class="full left">
+                        <label for="CreatePassword" class="label--hidden">{{ 'customer.register.password' | t }}</label><br />
+                        <input type="password" name="customer[password]" id="CreatePassword" placeholder="{{ 'customer.register.password' | t }}" {% if form.errors contains "password" %} class="error"{% endif %} required>
+                      </div>
+					  <div class="full left">
+						<input type="hidden" id="DateofApplication" name="customer[note][Date of Application]" value="{{ 'now' | date: "%a, %b %d, %Y" }}" autocapitalize="words" />
+                      </div>
+					  <div class="full left">
+                        <label for="FirmName" class="label--hidden">Name of Firm</label><br />
+						<input type="text" id="FirmName" name="customer[note][Name of Firm]" placeholder="Name of Firm" autocapitalize="words" autofocus required/>
+                      </div>
+					  <div class="full left">
+                        <label for="BillingAddress" class="label--hidden">Billing Address</label><br />
+						<input type="text" id="BillingAddresss" name="customer[note][Billing Address]" placeholder="Billing Address" autocapitalize="words" required />
+                      </div>
+					  <div class="full left">
+                        <label for="AccountsPayableContact" class="label--hidden">Accounts Payable Contact</label><br />
+						<input type="text" id="AccountsPayableContact" name="customer[note][Accounts Payable Contact]" placeholder="Accounts Payable Contact" autocapitalize="words" required />
+                      </div>
+					  <div class="full left">
+                        <label for="Phone" class="label--hidden">Phone</label><br />
+						<input type="text" id="Phone" name="customer[note][Phone]" placeholder="Phone" autocapitalize="words" required />
+                      </div>
+					  <div class="full left">
+                        <label for="Fax" class="label--hidden">Fax</label><br />
+						<input type="text" id="Fax" name="customer[note][Fax]" placeholder="Fax" autocapitalize="words" />
+                      </div>
+					  <div class="full left">
+                        <label for="Type" class="label--hidden">Type</label><br />
+                        <input type="radio" value="Distributor" name="customer[note][Type]" required /> <span>Distributor</span><br/>
+                        <input type="radio" value="Contractor" name="customer[note][Type]" required /> <span>Contractor</span><br/>
+                        <input type="radio" value="Corporation" name="customer[note][Type]" required /> <span>Corporation</span><br/>
+                        <input type="radio" value="Partnership" name="customer[note][Type]" required /> <span>Partnership</span>
+                      </div>
+					  <div class="full left">
+                        <label for="PurchasingContact" class="label--hidden">Purchasing Contact</label><br />
+						<input type="text" id="PurchasingContact" name="customer[note][Purchasing Contact]" placeholder="Purchasing Contact" autocapitalize="words" required />
+                      </div>
+					  <div class="full left">
+                        <label for="PurchasingContactEmail" class="label--hidden">Purchasing Contact Email</label><br />
+						<input type="email" id="PurchasingContactEmail" name="customer[note][Purchasing Contact Email]" placeholder="Purchasing Contact Email" autocapitalize="words" required />
+                      </div>
+					  <div class="full left">
+                        <label for="FederalID" class="label--hidden">Federal ID #</label><br />
+						<input type="text" id="FederalID" name="customer[note][Federal ID #]" placeholder="Federal ID #" autocapitalize="words" required />
+                      </div>
+					  <div class="full left">
+                        <label for="InBusinessSince" class="label--hidden">In Business Since</label><br />
+						<input type="date" id="InBusinessSince" name="customer[note][In Business Since]" placeholder="In Business Since" autocapitalize="words" required />
+                      </div>
+					  <div class="full left">
+                        <label for="SalesTax" class="label--hidden">Sales Tax #</label><br />
+						<input type="text" id="SalesTax" name="customer[note][Sales Tax #]" placeholder="Sales Tax #" autocapitalize="words" />
+                      </div>
+					  <div class="full left">
+                        <label for="SalesTaxExpDate" class="label--hidden">Sales Tax Expiration Date</label><br />
+						<input type="date" id="SalesTaxExpDate" name="customer[note][Sales Tax Expiration Date]" placeholder="Sales Tax Expiration Date" />
+                      </div>
+					  <div class="full left">
+                        <label for="BankName" class="label--hidden">Name of Bank</label><br />
+						<input type="text" id="BankName" name="customer[note][Name of Bank]" placeholder="Name of Bank" autocapitalize="words" />
+                      </div>
+					  <div class="full left">
+                        <label for="BankAddress" class="label--hidden">Bank Address</label><br />
+						<input type="text" id="BankAddress" name="customer[note][Bank Address]" placeholder="Bank Address" autocapitalize="words" />
+                      </div>
+					  <div class="full left">
+                        <label for="BankPhone" class="label--hidden">Bank Phone</label><br />
+						<input type="text" id="BankPhone" name="customer[note][Bank Phone]" placeholder="Bank Phone" autocapitalize="words" />
+                      </div>
+					  <div class="full left">
+                        <label for="CompanyOfficer1" class="label--hidden">Company Officer 1</label><br />
+						<input type="text" id="CompanyOfficer1" name="customer[note][Company Officer 1 Name]" placeholder="Company Officer Name" autocapitalize="words" /><br />
+						<input type="text" id="CompanyOfficer1Title" name="customer[note][Company Officer 1 Title]" placeholder="Company Officer Title" autocapitalize="words" /><br />
+						<input type="email" id="CompanyOfficer1Email" name="customer[note][Company Officer 1 Email]" placeholder="Company Officer Email" autocapitalize="words" />
+                      </div>
+					  <div class="full left">
+                        <label for="CompanyOfficer2" class="label--hidden">Company Officer 2</label><br />
+						<input type="text" id="CompanyOfficer2" name="customer[note][Company Officer 2 Name]" placeholder="Company Officer Name" autocapitalize="words" /><br />
+						<input type="text" id="CompanyOfficer2Title" name="customer[note][Company Officer 2 Title]" placeholder="Company Officer Title" autocapitalize="words" /><br />
+						<input type="email" id="CompanyOfficer2Email" name="customer[note][Company Officer 2 Email]" placeholder="Company Officer Email" autocapitalize="words" />
+                      </div>
+					</div>
+				</article>
+				<article class="col-md-23 col-md-offset-2">
+					<div id="content-second" class="full left white-bg supplier-signup-section">
+					  <div class="full left">
+                        <h3>Vendors on Open Accounts</h3>
+                      </div>
+					  <div class="full left">
+                        <label for="CompanyVendor1" class="label--hidden">Company 1</label><br />
+						<input type="text" id="CompanyVendor1" name="customer[note][Company Vendor 1 Name]" placeholder="Company Vendor 1 Name" autocapitalize="words" /><br />
+						<input type="text" id="CompanyVendor1Phone" name="customer[note][Company Vendor 1 Phone]" placeholder="Company Vendor 1 Phone" autocapitalize="words" /><br />
+						<input type="text" id="CompanyVendor1Fax" name="customer[note][Company Vendor 1 Fax]" placeholder="Company Vendor 1 Fax" autocapitalize="words" /><br />
+						<input type="text" id="CompanyVendor1Address" name="customer[note][Company Vendor 1 Address]" placeholder="Company Vendor 1 Address" autocapitalize="words" />
+                      </div>
+					  <div class="full left">
+                        <label for="CompanyVendor2" class="label--hidden">Company 2</label><br />
+						<input type="text" id="CompanyVendor2" name="customer[note][Company Vendor 2 Name]" placeholder="Company Vendor 2 Name" autocapitalize="words" /><br />
+						<input type="text" id="CompanyVendor2Phone" name="customer[note][Company Vendor 2 Phone]" placeholder="Company Vendor 2 Phone" autocapitalize="words" /><br />
+						<input type="text" id="CompanyVendor2Fax" name="customer[note][Company Vendor 2 Fax]" placeholder="Company Vendor 2 Fax" autocapitalize="words" /><br />
+						<input type="text" id="CompanyVendor2Address" name="customer[note][Company Vendor 2 Address]" placeholder="Company Vendor 2 Address" autocapitalize="words" />
+                      </div>
+					  <div class="full left">
+                        <label for="CompanyVendor3" class="label--hidden">Company 3</label><br />
+						<input type="text" id="CompanyVendor3" name="customer[note][Company Vendor 3 Name]" placeholder="Company Vendor 3 Name" autocapitalize="words" /><br />
+						<input type="text" id="CompanyVendor3Phone" name="customer[note][Company Vendor 3 Phone]" placeholder="Company Vendor 3 Phone" autocapitalize="words" /><br />
+						<input type="text" id="CompanyVendor3Fax" name="customer[note][Company Vendor 3 Fax]" placeholder="Company Vendor 3 Fax" autocapitalize="words" /><br />
+						<input type="text" id="CompanyVendor3Address" name="customer[note][Company Vendor 3 Address]" placeholder="Company Vendor 3 Address" autocapitalize="words" />
+                      </div>
+					  <div class="full left">
+                        <h3>Credit Policy</h3>
+                        <p>All invoices due 30 days from the invoice date. If legal action becomes necessary to collect delinquent accounts, purchaser agrees to pay all lawyers fees and interest. Also reasonable fees and court costs, including cost of appeal. It is also understood that Oklahoma will be the state where suite for judgment will take place. Your acceptance below and/or on delivery receipt is presumed to establish your acceptance of the terms and conditions set forth herein, without exception and is your agreement to comply with said terms.</p>
+						<input type="checkbox" id="Agreement" name="customer[note][Credit Policy Acceptance?]" value="Yes" required /> <span>I accept the Credit Policy</span>
+                      </div>
+					  <div class="full left">
+                        <label for="OfficersName" class="label--hidden">Officers Name</label><br />
+						<input type="text" id="OfficersName" name="customer[note][Officers Name]" placeholder="Name" autocapitalize="words" />
+                      </div>
+					  <div class="full left">
+                        <label for="OfficersTitle" class="label--hidden">Officers Title</label><br />
+						<input type="text" id="OfficersTitle" name="customer[note][Officers Title]" placeholder="Title" autocapitalize="words" />
+                      </div>
+					  <div class="full left">
+                        <p>
+                          <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn button">
+                        </p>
+                        <a href="{{ shop.url }}">{{ 'customer.register.cancel' | t }}</a>
+                        <div id="register-error-message" class="full left" style="padding:10px;background:#EE0033;color:white;display:none;"></div>
+                      </div>
+                  	</div>
+				</article>
+            {% endform %}
+			</div>
+			<div id="register-success-message" class="row" style="display:none;">
+              <div class="col-md-24 col-md-offset-0 col-xs-44 col-xs-offset-2"></div>
+			</div>
+<script>
+  $('#create_customer').on('submit', function(e) {    
+    register( $('#Email').val(), $('#CreatePassword').val(), $('#FirstName').val(), $('#LastName').val(), $('#DateofApplication').val(), $('#FirmName').val(), $('#BillingAddresss').val(), $('#AccountsPayableContact').val(), $('#Phone').val(), $('#Fax').val(), $('input[name="customer[note][Type]"]:checked').val(), $('#PurchasingContact').val(), $('#PurchasingContactEmail').val(), $('#FederalID').val(), $('#InBusinessSince').val(), $('#SalesTax').val(), $('#SalesTaxExpDate').val(), $('#BankName').val(), $('#BankAddress').val(), $('#BankPhone').val(), $('#CompanyOfficer1').val(), $('#CompanyOfficer1Title').val(), $('#CompanyOfficer1Email').val(), $('#CompanyOfficer2').val(), $('#CompanyOfficer2Title').val(), $('#CompanyOfficer2Email').val(), $('#CompanyVendor1').val(), $('#CompanyVendor1Phone').val(), $('#CompanyVendor1Fax').val(), $('#CompanyVendor1Address').val(), $('#CompanyVendor2').val(), $('#CompanyVendor2Phone').val(), $('#CompanyVendor2Fax').val(), $('#CompanyVendor2Address').val(), $('#CompanyVendor3').val(), $('#CompanyVendor3Phone').val(), $('#CompanyVendor3Fax').val(), $('#CompanyVendor3Address').val(), $('#Agreement').val(), $('#OfficersName').val(), $('#OfficersTitle').val() );
+    e.preventDefault();
+  });
+
+function register(email, password, firstName, lastName, dateOfApplication, firmName, billingAddress, accountsPayableContact, phone, fax, type, purchasingContact, purchasingContactEmail, federalID, inBusinessSince, salesTaxNo, salesTaxExpirationDate, nameOfBank, bankAddress, bankPhone, companyOfficer1Name, companyOfficer1Title, companyOfficer1Email, companyOfficer2Name, companyOfficer2Title, companyOfficer2Email, companyVendor1Name, companyVendor1Phone, companyVendor1Fax, companyVendor1Address, companyVendor2Name, companyVendor2Phone, companyVendor2Fax, companyVendor2Address, companyVendor3Name, companyVendor3Phone, companyVendor3Fax, companyVendor3Address, creditPolicyAcceptance, officersName, officersTitle) {    
+    
+    var isFormValid = true;
+    $("#create_customer input").not( "#SalesTax,#SalesTaxExpDate,#BankName,#BankAddress,#BankPhone,#CompanyOfficer1,#CompanyOfficer1Title,#CompanyOfficer1Email,#CompanyOfficer2,#CompanyOfficer2Title,#CompanyOfficer2Email,#CompanyVendor1,#CompanyVendor1Phone,#CompanyVendor1Fax,#CompanyVendor1Address,#CompanyVendor2,#CompanyVendor2Phone,#CompanyVendor2Fax,#CompanyVendor2Address,#CompanyVendor3,#CompanyVendor3Phone,#CompanyVendor3Fax,#CompanyVendor3Address" ).each(function(){
+        if ($.trim($(this).val()).length == 0){
+            $(this).parent().addClass("highlight");
+            isFormValid = false;
+        } else {
+            $(this).parent().removeClass("highlight");
+        }
+    });
+    if (!$("input[name='customer[note][Type]']:checked").val()) {
+        $("input[name='customer[note][Type]']").parent().addClass("highlight");
+      	isFormValid = false;
+    } else {
+        $("input[name='customer[note][Type]']").parent().removeClass("highlight");
+    }
+    if (!$("input#Agreement:checked").val()) {
+        $('input#Agreement').parent().addClass("highlight");
+		isFormValid = false;
+      console.log($(this));
+    } else {
+        $('input#Agreement').parent().removeClass("highlight");
+    }
+    if (!isFormValid) {
+      
+	  $('#register-error-message').show().html('All fields required. Please fix the fields marked in Red.');
+      
+    } else {
+    
+     var data = {
+        'customer[email]': email,
+        'customer[password]': password,
+        'customer[first_name]': firstName,
+        'customer[last_name]': lastName,
+		'customer[note][Date of Application]': dateOfApplication,
+		'customer[note][Name of Firm]': firmName,
+		'customer[note][Billing Address]': billingAddress,
+		'customer[note][Accounts Payable Contact]': accountsPayableContact,
+		'customer[note][Phone]': phone,
+		'customer[note][Fax]': fax,
+		'customer[note][Type]': type,
+		'customer[note][Purchasing Contact]': purchasingContact,
+		'customer[note][Purchasing Contact Email]': purchasingContactEmail,
+		'customer[note][Federal ID #]': federalID,
+		'customer[note][In Business Since]': inBusinessSince,
+		'customer[note][Sales Tax #]': salesTaxNo,
+		'customer[note][Sales Tax Expiration Date]': salesTaxExpirationDate,
+		'customer[note][Name of Bank]': nameOfBank,
+		'customer[note][Bank Address]': bankAddress,
+		'customer[note][Bank Phone]': bankPhone,
+		'customer[note][Company Officer 1 Name]': companyOfficer1Name,
+		'customer[note][Company Officer 1 Title]': companyOfficer1Title,
+		'customer[note][Company Officer 1 Email]': companyOfficer1Email,
+		'customer[note][Company Officer 2 Name]': companyOfficer2Name,
+		'customer[note][Company Officer 2 Title]': companyOfficer2Title,
+		'customer[note][Company Officer 2 Email]': companyOfficer2Email,
+		'customer[note][Company Vendor 1 Name]': companyVendor1Name,
+		'customer[note][Company Vendor 1 Phone]': companyVendor1Phone,
+		'customer[note][Company Vendor 1 Fax]': companyVendor1Fax,
+		'customer[note][Company Vendor 1 Address]': companyVendor1Address,
+		'customer[note][Company Vendor 1 Name]': companyVendor2Name,
+		'customer[note][Company Vendor 1 Phone]': companyVendor2Phone,
+		'customer[note][Company Vendor 1 Fax]': companyVendor2Fax,
+		'customer[note][Company Vendor 1 Address]': companyVendor2Address,
+		'customer[note][Company Vendor 1 Name]': companyVendor3Name,
+		'customer[note][Company Vendor 1 Phone]': companyVendor3Phone,
+		'customer[note][Company Vendor 1 Fax]': companyVendor3Fax,
+		'customer[note][Company Vendor 1 Address]': companyVendor3Address,
+		'customer[note][Credit Policy Acceptance?]': creditPolicyAcceptance,
+		'customer[note][Officers Name]': officersName,
+		'customer[note][Officers Title]': officersTitle,
+        form_type: 'create_customer',
+        utf8: '✓'
+      };
+
+      var promise = $.ajax({
+        url: '/account',
+        method: 'post',
+        data: data,
+        dataType: 'html',
+        async: true,
+        success: function(result){
+          if (result.indexOf('Sorry, looks like something went wrong.') !== -1) {
+            var errorMessage = $(result).find('.note.form-error');
+            $('#register-error-message').show().html(errorMessage);
+          } else {
+            var successMessage = "Thanks for submitting your info! We will be contacting you shortly once we are done verifying your eligibility.";
+            $('.register-form-row').hide();
+            $('#register-success-message').show().find('div').html(successMessage);
+          }
+        },
+        error: function (result, status, error) {
+          alert(result.responseText);
+        }
+      });
+
+    }
+    return isFormValid;
+  }
+
+</script>

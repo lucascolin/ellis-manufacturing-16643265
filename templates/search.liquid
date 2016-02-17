@@ -1,0 +1,96 @@
+
+{% assign grid_results = false %}
+
+{% assign respond_js_secret_key = shop.domain | md5 %}
+{% unless search.terms == respond_js_secret_key %}
+
+      {% if search.performed %}
+
+      	{% paginate search.results by 10 %}
+
+			<div class="row start-row">
+				<div id="section-headline" class="col-xs-48">
+          {% if search.results_count == 0 %}
+                  <h2>{{ 'general.search.no_results_html' | t: terms: search.terms }}</h1>
+				</div>
+			</div>
+			<div class="row">
+          {% else %}
+                  <h2>{{ 'general.search.results_for_html' | t: terms: search.terms }}</h1>
+				</div>
+			</div>
+			<div class="row">
+				<article class="col-lg-31 col-md-26">
+					<div id="content" class="full left white-bg">
+                        {% if grid_results == false %}
+
+                          {% for item in search.results %}
+                            <!-- Bold: CSP 3 -->
+                            {% include 'boldcsp_helper' with 'search' %}
+                            <!-- // end CSP 3 -->
+                            {% include 'search-result' %}
+                          {% endfor %}
+
+                          {% if paginate.pages > 1 %}
+                            <div class="text-center">
+                              {% include 'pagination-custom' %}
+                            </div>
+                          {% endif %}
+
+                          {% else %}
+
+                          <div class="grid-uniform">
+                            {% for item in search.results %}
+                              {% assign grid_item_width = 'large--one-quarter medium--one-third small--one-half' %}
+                              {% include 'search-result-grid' %}
+                            {% endfor %}
+                          </div>
+
+                        {% endif %}
+					</div>
+				</article>
+
+          {% endif %}
+        {% endpaginate %}
+
+      {% else %}
+
+        {% comment %}
+          If search.performed is false, someone either accessed the page without
+          the q parameter, or it was blank.
+          Be sure to show a search form here, along with anything else you want to showcase.
+        {% endcomment %}
+			<div class="row start-row">
+				<div id="section-headline" class="col-xs-48">
+			        <h2>{{ 'general.search.title' | t }}</h2>
+              </div>
+			</div>
+
+      {% endif %}
+				<aside class="col-lg-15 col-md-20 col-md-offset-2">
+                  <div class="aside-inside">
+					<div class="col-md-48 col-md-offset-0 col-sm-36 col-sm-offset-6 col-xs-48 sidebar-single">
+						<div class="full left single-headline">
+							<h4>Popular Sellers</h4>
+						</div>
+						<ul class="product-slider">
+						{% assign thirds = 'col-xs-48' %}
+                        {% for product in collections.featured.products %}
+							<li>
+                          {% include 'product-grid-item' with thirds %}
+							</li>
+                        {% endfor %}
+                      </ul><!-- END SLIDESHOW -->
+					</div><!-- END SINGLE SIDEBAR ELEMENT -->
+{% include 'sidebar-gallery' %}
+{% include 'sidebar-assistance' %}
+                  </div>
+				</aside>
+			</div>
+
+
+
+{% else %}
+  {% include 'respond' %}
+  {% layout none %}
+{% endunless %}

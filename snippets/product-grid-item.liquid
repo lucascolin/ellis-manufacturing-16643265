@@ -1,0 +1,43 @@
+{% unless current_collection == blank %}
+  {% assign current_collection = collection %}
+{% endunless %}
+
+{% assign on_sale = false %}
+{% if product.compare_at_price > product_price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+{% assign sold_out = true %}
+{% if product.available  %}
+  {% assign sold_out = false %}
+{% endif %}
+
+{% include 'boldcsp_helper' with 'collection' %}
+
+				<div class="{% if thirds %}{{ thirds }}{% else %}col-lg-12 col-md-16 col-sm-24{% endif %} single-product{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
+					<div class="present">
+	                    <a href="{{ product.url | within: collection }}" class="abs fill"></a>
+						<div class="product-image" style="background-image: url('{{ product.featured_image.src | img_url: 'large' }}');">
+							<div class="price">
+								{% if product_price_varies %}<span>{{ 'products.general.from_text_html' | t }}</span><br />{% endif %}${{ product_price | money_without_currency | remove: '.00' }}
+							</div>
+						</div>
+						<div class="product-title">
+                          <div class="sameheight-product-title">
+							<h6>{{ product.title }}</h6>
+							{% if product_variants_size != 1 %}<h6 class="options">{{ product.variants.length }} Options Available</h6>{% endif %}
+                          </div>
+						</div>
+					</div>
+					<div class="overbox">
+	                    <a href="{{ product.url | within: collection }}" class="abs fill"></a>
+						<div class="vertalign">
+							<div class="title overtext">
+								<h6>{{ product.title }}</h6>
+							</div>
+							<div class="tagline overtext">
+								<a class="button" href="{{ product.url | within: collection }}">{% if product_variants_size != 1 %}Select Options{% else %}Product Details{% endif %}</a>
+							</div>
+						</div>
+					</div>
+				</div>

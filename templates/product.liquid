@@ -1,0 +1,349 @@
+<!-- Bold: CSP 4 -->
+{% include 'boldcsp_helper' with 'product' %}
+<!-- // end CSP 4 -->
+
+            <div itemscope itemtype="http://schema.org/Product">
+              <meta itemprop="name" content="{{ product.title }}" />
+              <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+              <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+              <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+                <meta itemprop="price" content="{{ product_price | money |strip_html }}">
+                <meta itemprop="availability" content="{% if product.available == true %}in stock{% else %}out of stock{% endif %}">
+                <meta itemprop="itemCondition" content="http://schema.org/NewCondition" />
+              </div>
+            </div>
+
+
+
+                <div class="row start-row">
+                    <div id="section-headline" class="col-md-24">
+                        <h2>{{ product.title }}</h2>
+                    </div>
+                    {% include 'breadcrumb' %}
+                </div>
+			<div class="row">
+              <div class="row">
+				<div class="col-md-20 col-md-offset-0 col-sm-38 col-sm-offset-5">
+                  {% if product.images.size > 0 %}
+					<!-- The main images -->
+					<ul class="bxslider2">
+
+                      {% assign has_video = false %}
+                      {% for image in product.images %}
+                          {% if image.alt contains 'iframe' %}
+                              {% assign has_video = true %}
+                          {% endif %}
+                      {% endfor %}
+
+                      {% if has_video %}
+                          {% for image in product.images %}
+                              {% if image.alt contains 'iframe' %}
+    	                      <li>
+                                <div class="box">
+                                  {{ image.alt }} 
+                                </div>
+	                          </li>
+                              {% endif %}
+                          {% endfor %}
+                      {% endif %}
+
+                      {% for image in product.images %}
+                        {% unless image.alt contains 'iframe' %}
+						<li>
+							<div class="box"> 
+								<div class="box-content" style="background-image:url('{{ image.src | img_url: 'large' }}');"></div> 
+							</div>
+						</li>
+                        {% endunless %}
+                      {% endfor %}
+
+                    </ul>
+					<!-- The thumbnails -->
+					<div class="single-product-pager">
+						<ul class="bxslider-pager2">
+
+
+					  {% assign video_number = 0 %}
+                      {% if has_video %}
+                          {% for image in product.images %}
+                              {% if image.alt contains 'iframe' %}
+								  <li><a class="box" data-slide-index="{{ video_number }}"{% if image.attached_to_variant? %}{% for variant in image.variants %} data-variant="{{ variant.sku }}"{% endfor %}{% endif %} href=""><span class="box-content" style="background-image:url('{{ image.src | img_url: 'compact' }}');"></span></a></li>
+                              {% assign video_number = video_number | plus: 1 %}
+                              {% endif %}
+                          {% endfor %}
+                      {% endif %}
+
+                      {% for image in product.images %}
+                        {% unless image.alt contains 'iframe' %}
+						  <li><a class="box" data-slide-index="{{ video_number }}"{% if image.attached_to_variant? %}{% for variant in image.variants %} data-variant="{{ variant.sku }}"{% endfor %}{% endif %} href=""><span class="box-content" style="background-image:url('{{ image.src | img_url: 'compact' }}');"></span></a></li>
+                              {% assign video_number = video_number | plus: 1 %}
+                        {% endunless %}
+                      {% endfor %}
+
+
+                      	</ul>
+					</div>
+                  {% endif %}
+				</div>
+				<div id="content" class="col-md-26 col-md-offset-2 col-sm-38 col-sm-offset-5">
+					<div class="full left white-bg">
+						<div class="info-row">
+							<div id="ProductPrice" class="price">${{ product_price | money_without_currency | remove: '.00' }}</div>
+							<div id="ProductVariant" class="per-line" style="margin-top: 8.5px;">per {{ product.variants.first.title }}</div>
+							<div class="review" style="margin-top:10.5px;">
+                              <div class="yotpo bottomLine"
+                              data-appkey="qZdfhp7jhQsaYH7Fc09LnAD8mVyYkff09KHwT7Lp"
+                              data-domain="{{ shop.permanent_domain | escape }}"
+                              data-product-id="{{ product.id }}"
+                              data-product-models="{{ product.id }}"
+                              data-name="{{ product.title | escape }}"
+                              data-url="{{ shop.url }}{{ product.url }}"
+                              data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+                              data-description="{{ product.description | escape }}"
+                              data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+                              </div>
+                          	</div>
+						</div>
+						{{ product.content | split: '<h6>' | first  }}
+						<hr />
+
+                          {% comment %}
+                            Get first variant, or deep linked one
+                          {% endcomment %}
+                          {% assign variant = product.selected_or_first_available_variant %}
+
+                          
+
+
+                          <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+								<select name="id" id="productSelect" class="single-option-selector" data-option="option1">
+                                {% for variant in product.variants %}
+                                  <!-- Bold: CSP 5 -->
+                                  {% include 'boldcsp_helper' with 'variants' %}
+                                  <!-- // end CSP 5 -->
+                                  {% if variant.available %}
+
+                                    {% comment %}
+                                      Note: if you use option_selection.js, your <select> tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
+                                    {% endcomment %}
+                                    <option value="{{ variant.id }}">{{ variant.title }}</option>
+
+                                  {% else %}
+                                    <option disabled="disabled">
+                                      {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                                    </option>
+                                  {% endif %}
+                                {% endfor %}
+								</select><!--
+							
+
+							--><div class="selector-wrapper">
+                                  <label for="Quantity" class="quantity-selector">{{ 'products.product.quantity' | t }}</label>
+                                  <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
+							</div>
+
+                            <button type="submit" name="add" id="AddToCart" class="button">
+                              <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
+                            </button>
+                          </form>
+
+						<hr />
+						<div class="table pricing-table">
+                          {% for variant in product.variants %}
+                            <!-- Bold: CSP 5 -->
+                            {% include 'boldcsp_helper' with 'variants' %}
+                            <!-- // end CSP 5 -->
+                            {% if variant.available %}
+                              {% if forloop.first %}
+							<div class="tr">
+								<div class="td th">
+									<p>Item #</p>
+								</div>
+                              {% assign number_tr = 0 %}
+                              {% for mf in variant.metafields.variant_info %}
+                              {% assign number_tr = number_tr | plus: 1 %}
+								<div class="td th">
+									<p>{{ mf[0] | replace: '_', ' ' }}</p>
+								</div>
+                              {% endfor %}
+                                <div class="td th">
+                                    <p>Weight</p>
+                                </div>
+								<div class="td th">
+									<p>Price</p>
+								</div>
+							</div>
+                              {% endif %}
+                            {% endif %}
+                          {% endfor %}
+                          {% for variant in product.variants %}
+                            <!-- Bold: CSP 5 -->
+                            {% include 'boldcsp_helper' with 'variants' %}
+                            <!-- // end CSP 5 -->
+                            {% if variant.available %}
+							<div id="{{ variant.id }}" class="tr{% if forloop.first %} current-tr{% endif %}">
+								<div class="td">
+									<p>{{ variant.title }}</p>
+								</div>
+                              {% assign number_mf = 0 %}
+                              {% for mf in variant.metafields.variant_info %}
+								<div class="td">
+									<p>{{ mf[1] }}</p>
+								</div>
+                              {% assign number_mf = number_mf | plus: 1 %}
+                              {% endfor %}
+                              {% if number_mf < number_tr %}
+                              {% assign number_mf = number_mf | plus: 1 %}
+                              {% for i in (number_mf..number_tr) %}
+								<div class="td">
+									<p></p>
+								</div>
+                              {% endfor %}
+                              {% endif %}
+								<div class="td">
+									<p>{{ variant.weight | weight_with_unit | remove: '.0' }}</p>
+								</div>
+								<div class="td">
+									<p>${{ variant_price | money_without_currency | remove: '.00' }}</p>
+								</div>
+							</div>
+                            {% endif %}
+                          {% endfor %}
+						</div><!-- END TABLE -->
+                          {% comment %}
+                          This has been removed for the time being, as it is too difficult to try to include these in any feasable way that would be responsive to their needs.
+						<hr />
+						<p>Shop Drawings (PDF): <a href="#">STL-10HD</a>, <a href="#">STL-13HD</a>, <a href="#">STL-19HD</a>, <a href="#">STL-31HD</a>, <a href="#">STL-55HD</a></p>
+                          {% endcomment %}
+				</div>
+			</div>
+          </div>
+			<div class="row">
+				<article id="content-second" class="col-md-30">
+					<ul class="tabs">
+						<li class="tab-link current" data-tab="tab-1"><div class="sameheight-tabs">Product Overview</div></li><!--
+					{% assign need_tab = false %}
+                {% for tag in product.tags %}
+                  {% if tag contains 'extra-' %}
+                    {% capture prod_id %}{{ tag | remove: 'extra-' }}{% endcapture %}
+                    {% for product in collections.all.products %}
+                      {% capture loop_id %}{{ product.id }}{% endcapture %}
+                      {% if loop_id == prod_id and need_tab != true %}
+						--><li class="tab-link" data-tab="tab-2"><div class="sameheight-tabs">Recommended Products</div></li><!--
+						{% assign need_tab = true %}
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+{% comment %}
+						--><li class="tab-link" data-tab="tab-3"><div class="sameheight-tabs">Shipping Details</div></li><!--
+{% endcomment %}
+						--><li class="tab-link" data-tab="tab-4"><div class="sameheight-tabs">Reviews{% comment %} <div class="review"><span class="star-on"></span><span class="star-on"></span><span class="star-on"></span><span class="star-on"></span><span class="star-off"></span></div>{% endcomment %}</div></li>
+					</ul>
+					<div class="full left white-bg">
+						<div id="tab-1" class="tab-content current">
+							{{ product.content | split: '</h6>' | last  }}
+						</div>
+              {% if need_tab == true %}
+                      <div id="tab-2" class="tab-content">
+                {% for tag in product.tags %}
+                  {% if tag contains 'extra-' %}
+                    {% capture prod_id %}{{ tag | remove: 'extra-' }}{% endcapture %}
+                    {% for product in collections.all.products %}
+                      {% capture loop_id %}{{ product.id }}{% endcapture %}
+                      {% if loop_id == prod_id %}
+                          {% assign thirds = 'col-lg-16 col-md-24' %}
+							{% include 'product-grid-item' with thirds %}
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+						</div>
+              {% endif %}
+{% comment %}
+						<div id="tab-3" class="tab-content">
+							{{ pages.shipping-details.content }}
+						</div>
+{% endcomment %}
+						<div id="tab-4" class="tab-content">
+                          <div class="yotpo yotpo-main-widget"
+                              data-product-id="{{ product.id }}"
+                              data-name="{{ product.title | escape }}"
+                              data-url="{{ shop.url }}{{ product.url }}"
+                              data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}"
+                              data-description="{{ product.description | escape }}">
+                          </div>
+						</div>
+					</div>
+				</article>
+				<aside class="col-md-16 col-md-offset-2">
+                  <div class="aside-inside">
+{% include 'sidebar-assistance' %}
+{% include 'sidebar-gallery' %}
+{% include 'sidebar-supplier' %}
+                  </div>
+				</aside>
+			</div>
+			<hr />
+			<div class="row related-products">
+{% include 'related-products' %}
+			</div>
+
+{% comment %}
+  To take advantage of a callback on the select dropdown, add option_selection.js
+  and customize the JS in timber.productPage as needed.
+
+  Currently, timber.productPage does the following:
+    - Hides your <select> tag from above
+    - Breaks out the product variants into separate product options, if more than one exists
+    - Generates a <select> tag for each product option
+    - Enables/disables elements based on variant availability
+
+  Callback notes:
+    - Keep the callback available to the global scope (window.selectCallback) so that advanced
+      addons can override it.
+      * E.g. multiple currencies http://docs.shopify.com/manual/configuration/store-customization/currencies-and-translations/currencies/how-to-toggle-between-two-currencies
+{% endcomment %}
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+<script>
+  $( ".pricing-table .tr" ).on( "click", ".td", function() {
+    console.log( $(this).parent('.tr').attr('id') );
+    var variant_id = $(this).parent('.tr').find('.td:eq( 0 )').find('p').text();
+    $('.bselect-dropdown .bselect-option-list').find('a:contains("' + variant_id + '")').trigger('click');
+  });
+
+  var selectCallback = function(variant, selector) {
+    timber.productPage({
+      money_format: "{{ shop.money_format }}",
+      variant: variant,
+      selector: selector
+    });
+  };
+
+  jQuery(function($) {
+    new Shopify.OptionSelectors('productSelect', {
+      product: {{ product | json }},
+      onVariantSelected: selectCallback,
+      enableHistoryState: true
+    });
+
+    // Add label if only one product option and it isn't 'Title'. Could be 'Size'.
+    {% if product.options.size == 1 and product.options.first != 'Title' %}
+      $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first | escape }}</label>');
+    {% endif %}                                       
+    
+    {% if product.variants.size > 3 %}
+      {% for option in product.options %}
+        if (window.location.search.indexOf('variant') < 0) {
+          $('.single-option-selector:eq({{ forloop.index0 }})')
+            .filter(function() { return $(this).find('option').size() > 1  })
+            .prepend('<option value="">Select an option</option>')
+            .val('')
+            .trigger('change');
+        }
+      {% endfor %}
+    {% endif %}
+    
+  });
+</script>
